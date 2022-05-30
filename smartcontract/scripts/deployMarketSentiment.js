@@ -3,7 +3,7 @@ const hre = require("hardhat");
 async function main() {
 
   // We get the contract to deploy
-  const MarketSentiment = await hre.ethers.getContractFactory();
+  const MarketSentiment = await hre.ethers.getContractFactory("MarketSentiment");
   const marketsentiment = await MarketSentiment.deploy();
 
   await marketsentiment.deployed();
