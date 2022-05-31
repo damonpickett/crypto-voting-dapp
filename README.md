@@ -129,3 +129,91 @@ Contract is now deployed to mumbai testnet.
 1. From terminal, in root folder of app: `yarn` to initialize and `yarn start` to open app in browser.
 
 ### Create Header
+1. Added logo, connect button, and Coin component to App.js. 
+2. Coin component has `color` `useState()`, `useEffect` updates token's color if below 50 to red.
+
+### Create Vote Buttons
+1. Import `Buttons` from `web3uikit`
+2. Add the following code to `votes` div in Coin.js:
+```js
+<Button 
+    onClick={() => {setPerc(perc + 1)}}
+    text='Up'
+    theme='primary'
+    type='button'
+/>
+
+<Button
+    color='red'
+    onClick={() => {setPerc(perc - 1)}}
+    text='Down'
+    theme='colored'
+    type='button'
+/>
+```
+3. Create Moralis server, add `serverUrl` and `appId` to `index.js`. Up and Down buttons now adjust the percentage on the front-end. It appears Moralis' `web3uikit` only works if you connect your app to a Moralis server.
+
+### Create Info Modal
+1. Import `Modal` from `web3uikit`. Add `<Modal />` to `App.js`. This gives us an information screen which we can make visible by creating a button called 'INFO' on the `Coin.js` component.
+2. Here is the code for the `<Modal />` from `App.js`:
+```js
+<Modal
+    isVisible={visible}
+    onCloseButtonPressed={() => setVisible(false)}
+    hasFooter={false}
+    title={modalToken}
+>
+    <div>
+        <span style={{ color: 'black' }}>{`About`}</span>
+    </div>
+    <div>
+        {modalToken &&
+        abouts[abouts.findIndex((x) => x.token === modalToken)].about}
+    </div>
+</Modal>
+```
+3. Here is the code for the button which activates `<Modal />` from  the `Coin.js` component:
+```js
+<Button
+    onClick={() => {
+        setModalToken(token)
+        setVisible(true);
+    }}
+    text='INFO'
+    theme='translucent'
+    type='button'
+/>
+```
+4. Clicking the 'info' button for a given coin sets the Modal's `title` to `modalToken` which is set by the `token` that coin component has inherited from `App.js`. The Modal's visible status is set to true. The 'About' section in the modal is set when the `modalToken` is truthy. When this condition is met we use the `findIndex()` array method to retrieve the corresponding `about` section from our `abouts` array is `about.js`.
+
+### Moralis Web3Api Token Price
+1. To fetch the token price of a crypto currency, we use Moralis' Web3 API. This gives the `getTokenPrice()` function which requires the contract address of a given token. Here is the code from `App.js`:
+```js
+useEffect(() => {
+
+    async function fetchTokenPrice() {
+      const options = {
+        address:
+          abouts[abouts.findIndex((x) => x.token === modalToken)].address,
+      };
+      const price = await Web3Api.token.getTokenPrice(options);
+      setModalPrice(price.usdPrice.toFixed(2));
+    }
+
+    if(modalToken) {
+      fetchTokenPrice()
+    }
+
+}, [modalToken]);
+```
+2. We update our Modal in `App.js` to include this div:
+```js
+ <div>
+    <span style={{ color: 'black' }}>{`Price: `}</span>
+    {modalPrice}$
+</div>
+```
+Now the price of a given token is displayed in the Modal.
+
+### Connect Smart Contract and App
+
