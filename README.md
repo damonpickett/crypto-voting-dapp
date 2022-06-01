@@ -1,13 +1,23 @@
 # Crypto Voting App
 This project is based on a video tutorial by [Moralis](https://www.youtube.com/watch?v=MI_Se26Sfmo)
 
-Contract for this app can be viewed [here](https://mumbai.polygonscan.com/address/0x1570Bbfca7492c2294410b6966609e9b8B2952d8)
+The contract for this app can be viewed [here](https://mumbai.polygonscan.com/address/0x1570Bbfca7492c2294410b6966609e9b8B2952d8)
+
+The Crypto Voting Dapp allows users to connect their wallets to the application and vote on whether they think the price of a given cryptocurrency will go up or down. An 'INFO' button corresponding to each currency opens a window which contains the current value and a description. The `MarketSentiment.sol` smart contract has been deployed to the Polygon Mumbai Testnet.
+
+The `<Connect />` button provided by Moralis' Web3UIKit allows for the user to connect to the app.
+
+The percentage displayed is calculated by taking this formula: up votes / (up + down votes) * 100. These numbers are retrieved from our database in the Moralis server. Within our `App.js` file our `useEffect()` calls the `getRatio()` function which returns the percentage. The `useEffect` then sets the percentage for the given coin in the `perc` state which is assigned to the `<Coin />` in `App.js`. Since our app is wrapped in a `<MoralisProvider />`, Moralis is initialized upon mount. This is when our `useEffect` is activated. `isInitialized` is deconstructed from `useMoralis()` which is imported from `'react-moralis'`
+
+The 'Up' and 'Down' buttons activate the `vote()` function in the `Coin.js` component. The function can only be activated if the user's wallet has been authenticated. The `isAuthenticated` state is deconstructed from `useMoralis()`. The vote function bundles the necessary data in an `options` object and uses Moralis' `useWeb3ExecuteFunction` (saved as the `const` `contractProcessor`) combined with the `fetch()` to activate `vote()` in our deployed smart contract. The results are recorded in our Moralis server.
+
+The 'INFO' button uses the `<Modal />` from Moralis' Web3UIKit. The `<Modal />` is the window which displays the relevant coin info and is placed in `App.js`. The `visible` state is set to false. The 'INFO' button is in the `Coin.js` component and clicking it sets the modal's visible state to true. The button also sets the `modalToken` state. Setting this state activates a `useEffect()` in `App.js` which fetches the current price of the coin.
 
 ## Tech Stack
-- React.js
-- Solidity
-- Hardhat
-- Moralis
+- React.js: Front-end
+- Solidity: Smart contract language for communicating with Polygon testnet.
+- Hardhat: A local Ethereum network designed for development. Allows us to deploy our contracts to blockchains, run tests, debug Solidity code.
+- Moralis: Provides an SDK for interacting with wallets and blockchains. Provides a server for tracking our vote events.
 
 ## Notes from video
 
@@ -285,3 +295,49 @@ useEffect(() => {
     }
   }, [isInitialized])
   ```
+7. In `Coin.js` we import `useWeb3ExecuteFunction` and `useMoralis` from 'react-moralis'.
+8. Within our `Coin` function we add `contractProcessor` and we deconstruct `{isAuthenticated}`:
+```js
+function Coin({ perc, setPerc, token, setModalToken, setVisible }) {
+  const [color, setColor] = useState();
+  const contractProcessor = useWeb3ExecuteFunction();
+  const { isAuthenticated } = useMoralis();
+```
+`isAutheticated` is a state which ensures users have connected to the site with their wallet.
+9. Here is the code for voting via our smart contract:
+```js
+async function vote(upDown) {
+    let options = {
+      contractAddress: "0x1570Bbfca7492c2294410b6966609e9b8B2952d8",
+      functionName: "vote",
+      abi: [
+        {
+          inputs: [
+            { internalType: "string", name: "_ticker", type: "string" },
+            { internalType: "bool", name: "_vote", type: "bool" },
+          ],
+          name: "vote",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      params: {
+        _ticker: token,
+        _vote: upDown,
+      },
+    }
+
+    await contractProcessor.fetch({
+      params: options,
+      onSuccess: () => {
+        console.log('vote succesful');
+      },
+      onError: (error) => {
+        alert(error.data.message)
+      }
+    });
+
+  }
+```
+`contractProcessor` (which is a variable containing `useWeb3ExecuteFunction()`), combined with the `fetch()` function uses the data contained in our `options` object to interact with our smart contract which has been deployed to the polygon testnet.
