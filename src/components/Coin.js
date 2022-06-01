@@ -1,64 +1,107 @@
 import React, { useEffect, useState } from "react";
 import "./Coin.css";
-import { Button } from 'web3uikit';
+import { Button } from "web3uikit";
+import { useWeb3ExecuteFunction, useMoralis } from "react-moralis";
 
-
-function Coin({perc, setPerc, token, setModalToken, setVisible}) {
-
+function Coin({ perc, setPerc, token, setModalToken, setVisible }) {
   const [color, setColor] = useState();
+  const contractProcessor = useWeb3ExecuteFunction();
+  const { isAuthenticated } = useMoralis();
 
   useEffect(() => {
     if (perc < 50) {
-      setColor('#c43d08');
+      setColor("#c43d08");
     } else {
-      setColor('green');
+      setColor("green");
     }
-  }, [perc])
+  }, [perc]);
+
+  async function vote(upDown) {
+    let options = {
+      contractAddress: "0x1570Bbfca7492c2294410b6966609e9b8B2952d8",
+      functionName: "vote",
+      abi: [
+        {
+          inputs: [
+            { internalType: "string", name: "_ticker", type: "string" },
+            { internalType: "bool", name: "_vote", type: "bool" },
+          ],
+          name: "vote",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      params: {
+        _ticker: token,
+        _vote: upDown,
+      },
+    }
+
+    await contractProcessor.fetch({
+      params: options,
+      onSuccess: () => {
+        console.log('vote succesful');
+      },
+      onError: (error) => {
+        alert(error.data.message)
+      }
+    });
+
+  }
 
   return (
     <>
       <div>
-        <div className="token">
-          {token}
-        </div>
-        <div className="circle" style={{boxShadow: `0 0 20px ${color}`}}>
-          <div className="wave"
+        <div className="token">{token}</div>
+        <div className="circle" style={{ boxShadow: `0 0 20px ${color}` }}>
+          <div
+            className="wave"
             style={{
               marginTop: `${100 - perc}%`,
               boxShadow: `0 0 20px ${color}`,
               backgroundColor: color,
             }}
-
           ></div>
-          <div className="percentage">
-            {perc}%
-          </div>
+          <div className="percentage">{perc}%</div>
         </div>
         <div className="votes">
-          <Button 
-            onClick={() => {setPerc(perc + 1)}}
-            text='Up'
-            theme='primary'
-            type='button'
+          <Button
+            onClick={() => {
+              if(isAuthenticated){
+                vote(true)
+              }else{
+                alert('Authenticate to Vote')
+              }
+            }}
+            text="Up"
+            theme="primary"
+            type="button"
           />
 
           <Button
-            color='red'
-            onClick={() => {setPerc(perc - 1)}}
-            text='Down'
-            theme='colored'
-            type='button'
+            color="red"
+            onClick={() => {
+              if(isAuthenticated){
+                vote(false)
+              }else{
+                alert('Authenticate to Vote')
+              }
+            }}
+            text="Down"
+            theme="colored"
+            type="button"
           />
         </div>
         <div className="votes">
           <Button
             onClick={() => {
-              setModalToken(token)
+              setModalToken(token);
               setVisible(true);
             }}
-            text='INFO'
-            theme='translucent'
-            type='button'
+            text="INFO"
+            theme="translucent"
+            type="button"
           />
         </div>
       </div>

@@ -1,6 +1,14 @@
 # Crypto Voting App
 This project is based on a video tutorial by [Moralis](https://www.youtube.com/watch?v=MI_Se26Sfmo)
 
+Contract for this app can be viewed [here](https://mumbai.polygonscan.com/address/0x1570Bbfca7492c2294410b6966609e9b8B2952d8)
+
+## Tech Stack
+- React.js
+- Solidity
+- Hardhat
+- Moralis
+
 ## Notes from video
 
 ### Setup
@@ -216,4 +224,64 @@ useEffect(() => {
 Now the price of a given token is displayed in the Modal.
 
 ### Connect Smart Contract and App
+1. Create sync event in Moralis server for `tickerupdated` event in `MarketSentiment.sol`. Now our Moralis server is tracking new votes which occur on the [Mumbai Polygon](https://mumbai.polygonscan.com/) testnet.
+2. import regular Moralis functions:
+```js
+import { useMoralisWeb3Api, useMoralis } from "react-moralis";
+```
+3. Desconstruct `useMoralis()` within the app:
+```js
+const {Moralis, isInitialized} = useMoralis();
+```
+4. Create a function in `App.js` to set the vote percentage based on data in Moralis server:
+```js
+async function getRatio(tick, setPerc) {
 
+    const Votes = Moralis.Object.extend("Votes");
+    const query = new Moralis.Query(Votes);
+    query.equalTo("ticker", tick);
+    query.descending('createdAt');
+    const results = await query.first();
+
+    let up = Number(results.attributes.up);
+    let down = Number(results.attributes.down);
+    let ratio = Math.round(up/(up+down)*100);
+    setPerc(ratio);
+  };
+```
+5. Create a `useEffect()` hook that updates the vote percentages in our app every time our Moralis server `isInitialized`.:
+```js
+useEffect(() => {
+    if(isInitialized) {
+      getRatio('BTC', setBtc);
+      getRatio('ETH', setEth);
+      getRatio('LINK', setLink);
+    }
+  }, [isInitialized])
+```
+6. Add the following code to the above `useEffect()` so the app live updates when new votes occur:
+```js
+useEffect(() => {
+    if(isInitialized) {
+      getRatio('BTC', setBtc);
+      getRatio('ETH', setEth);
+      getRatio('LINK', setLink);
+
+      async function createLiveQuery() {
+        let query = new Moralis.Query('Votes');
+        let subscription = await query.subscribe();
+        subscription.on('update', (object) => {
+
+          if(object.attributes.ticker === 'LINK'){
+            getRatio('LINK', setLink);
+          }else if(object.attributes.ticker === "ETH"){
+            getRatio('ETH', setEth);
+          }else if(object.attributes.ticker === 'BTC'){
+            getRatio('BTC', setBtc);
+          }
+        })
+      }
+      createLiveQuery();
+    }
+  }, [isInitialized])
+  ```
