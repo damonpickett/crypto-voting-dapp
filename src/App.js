@@ -127,7 +127,7 @@ const App = () => {
       </Modal>
       <div className='info'>
         <p>This application's smart contract has been deployed to <a href='https://mumbai.polygonscan.com/' target='_blank' rel='noreferrer'>Polygon's Mumbai Testnet</a></p>
-        <p>This contract's transactions can be viewed <a href='https://mumbai.polygonscan.com/address/0x1570Bbfca7492c2294410b6966609e9b8B2952d8' target='_blank' rel='noreferrer'>here</a></p>
+        <p>The contract and its transactions can be viewed <a href='https://mumbai.polygonscan.com/address/0x1570Bbfca7492c2294410b6966609e9b8B2952d8' target='_blank' rel='noreferrer'>here</a></p>
       </div>
     </>
   );
