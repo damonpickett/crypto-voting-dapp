@@ -9,8 +9,8 @@
     "static/js/3.6020cfdb.chunk.js": "/crypto-voting-dapp/static/js/3.6020cfdb.chunk.js",
     "static/js/3.6020cfdb.chunk.js.map": "/crypto-voting-dapp/static/js/3.6020cfdb.chunk.js.map",
     "main.css": "/crypto-voting-dapp/static/css/main.e3fb6c36.chunk.css",
-    "main.js": "/crypto-voting-dapp/static/js/main.4135cc91.chunk.js",
-    "main.js.map": "/crypto-voting-dapp/static/js/main.4135cc91.chunk.js.map",
+    "main.js": "/crypto-voting-dapp/static/js/main.a249e288.chunk.js",
+    "main.js.map": "/crypto-voting-dapp/static/js/main.a249e288.chunk.js.map",
     "runtime-main.js": "/crypto-voting-dapp/static/js/runtime-main.7491bbb6.js",
     "runtime-main.js.map": "/crypto-voting-dapp/static/js/runtime-main.7491bbb6.js.map",
     "static/js/6.fc655d31.chunk.js": "/crypto-voting-dapp/static/js/6.fc655d31.chunk.js",
@@ -52,6 +52,6 @@
     "static/js/runtime-main.7491bbb6.js",
     "static/js/6.fc655d31.chunk.js",
     "static/css/main.e3fb6c36.chunk.css",
-    "static/js/main.4135cc91.chunk.js"
+    "static/js/main.a249e288.chunk.js"
   ]
 }
