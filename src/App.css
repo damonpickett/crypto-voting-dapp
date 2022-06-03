@@ -53,3 +53,25 @@
   width: 40vw !important;
   height: 450px;
 }
+
+.info{
+  margin-top: 50px;
+  height:150px;
+  max-width: 600px;
+  margin: auto;
+  font-size: 20px;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  line-height: 20px;
+}
+
+a{
+  text-decoration: none;
+  color: rgb(187, 36, 214)
+}
+
+a:hover{
+  color: rgb(75, 214, 36);
+  transition: color 0.5s;
+}
