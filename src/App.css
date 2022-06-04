@@ -1,3 +1,9 @@
+@media screen and (max-width: 400px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+  }
+}
 
 .list{
   width:90%;
@@ -34,12 +40,10 @@
 }
 
 .instructions{
-  margin-top: 50px;
-  height:150px;
+  /* height:150px; */
   display: flex;
   justify-content: center;
-  width: 600px;
-  margin: auto;
+  margin: 25px auto 50px;
   font-size: 30px;
   font-weight: 600;
   color: white;
