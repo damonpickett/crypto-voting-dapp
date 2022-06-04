@@ -8,7 +8,7 @@
     "static/js/2.8ba7aeb1.chunk.js.map": "/crypto-voting-dapp/static/js/2.8ba7aeb1.chunk.js.map",
     "static/js/3.6020cfdb.chunk.js": "/crypto-voting-dapp/static/js/3.6020cfdb.chunk.js",
     "static/js/3.6020cfdb.chunk.js.map": "/crypto-voting-dapp/static/js/3.6020cfdb.chunk.js.map",
-    "main.css": "/crypto-voting-dapp/static/css/main.58141a81.chunk.css",
+    "main.css": "/crypto-voting-dapp/static/css/main.4ddcba50.chunk.css",
     "main.js": "/crypto-voting-dapp/static/js/main.393bd92a.chunk.js",
     "main.js.map": "/crypto-voting-dapp/static/js/main.393bd92a.chunk.js.map",
     "runtime-main.js": "/crypto-voting-dapp/static/js/runtime-main.7491bbb6.js",
@@ -40,7 +40,7 @@
     "static/js/18.68996135.chunk.js": "/crypto-voting-dapp/static/js/18.68996135.chunk.js",
     "static/js/18.68996135.chunk.js.map": "/crypto-voting-dapp/static/js/18.68996135.chunk.js.map",
     "index.html": "/crypto-voting-dapp/index.html",
-    "static/css/main.58141a81.chunk.css.map": "/crypto-voting-dapp/static/css/main.58141a81.chunk.css.map",
+    "static/css/main.4ddcba50.chunk.css.map": "/crypto-voting-dapp/static/css/main.4ddcba50.chunk.css.map",
     "static/js/0.9f09ae11.chunk.js.LICENSE.txt": "/crypto-voting-dapp/static/js/0.9f09ae11.chunk.js.LICENSE.txt",
     "static/js/2.8ba7aeb1.chunk.js.LICENSE.txt": "/crypto-voting-dapp/static/js/2.8ba7aeb1.chunk.js.LICENSE.txt",
     "static/js/3.6020cfdb.chunk.js.LICENSE.txt": "/crypto-voting-dapp/static/js/3.6020cfdb.chunk.js.LICENSE.txt",
@@ -51,7 +51,7 @@
   "entrypoints": [
     "static/js/runtime-main.7491bbb6.js",
     "static/js/6.fc655d31.chunk.js",
-    "static/css/main.58141a81.chunk.css",
+    "static/css/main.4ddcba50.chunk.css",
     "static/js/main.393bd92a.chunk.js"
   ]
 }
