@@ -76,7 +76,7 @@ const App = () => {
     <>
       <div className="header">
         <div className="logo">
-          <img src={logo} alt="logo" height="50px" />
+          <a href='https://moralis.io/' target='_blank' rel="noreferrer"><img src={logo} alt="logo" height="50px" /></a>
           Moralis
         </div>
         <ConnectButton />
@@ -128,6 +128,7 @@ const App = () => {
       <div className='info'>
         <p>This application's smart contract has been deployed to <a href='https://mumbai.polygonscan.com/' target='_blank' rel='noreferrer'>Polygon's Mumbai Testnet</a></p>
         <p>The contract and its transactions can be viewed <a href='https://mumbai.polygonscan.com/address/0x1570Bbfca7492c2294410b6966609e9b8B2952d8' target='_blank' rel='noreferrer'>here</a></p>
+        <p>For a breakdown of how this app works, check out the <a href='https://github.com/damonpickett/crypto-voting-dapp' target='_blank' alt='noreferrer'>Github repo</a>.</p>
       </div>
     </>
   );
