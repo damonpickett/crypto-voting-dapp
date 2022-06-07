@@ -8,9 +8,9 @@
     "static/js/2.554c9ccd.chunk.js.map": "/crypto-voting-dapp/static/js/2.554c9ccd.chunk.js.map",
     "static/js/3.6aef1cd2.chunk.js": "/crypto-voting-dapp/static/js/3.6aef1cd2.chunk.js",
     "static/js/3.6aef1cd2.chunk.js.map": "/crypto-voting-dapp/static/js/3.6aef1cd2.chunk.js.map",
-    "main.css": "/crypto-voting-dapp/static/css/main.242a3850.chunk.css",
-    "main.js": "/crypto-voting-dapp/static/js/main.c6db7a7d.chunk.js",
-    "main.js.map": "/crypto-voting-dapp/static/js/main.c6db7a7d.chunk.js.map",
+    "main.css": "/crypto-voting-dapp/static/css/main.5ee095af.chunk.css",
+    "main.js": "/crypto-voting-dapp/static/js/main.3cc4ba04.chunk.js",
+    "main.js.map": "/crypto-voting-dapp/static/js/main.3cc4ba04.chunk.js.map",
     "runtime-main.js": "/crypto-voting-dapp/static/js/runtime-main.874f22f5.js",
     "runtime-main.js.map": "/crypto-voting-dapp/static/js/runtime-main.874f22f5.js.map",
     "static/js/6.6d1c9d1e.chunk.js": "/crypto-voting-dapp/static/js/6.6d1c9d1e.chunk.js",
@@ -40,7 +40,7 @@
     "static/js/18.68996135.chunk.js": "/crypto-voting-dapp/static/js/18.68996135.chunk.js",
     "static/js/18.68996135.chunk.js.map": "/crypto-voting-dapp/static/js/18.68996135.chunk.js.map",
     "index.html": "/crypto-voting-dapp/index.html",
-    "static/css/main.242a3850.chunk.css.map": "/crypto-voting-dapp/static/css/main.242a3850.chunk.css.map",
+    "static/css/main.5ee095af.chunk.css.map": "/crypto-voting-dapp/static/css/main.5ee095af.chunk.css.map",
     "static/js/0.c04706a9.chunk.js.LICENSE.txt": "/crypto-voting-dapp/static/js/0.c04706a9.chunk.js.LICENSE.txt",
     "static/js/2.554c9ccd.chunk.js.LICENSE.txt": "/crypto-voting-dapp/static/js/2.554c9ccd.chunk.js.LICENSE.txt",
     "static/js/3.6aef1cd2.chunk.js.LICENSE.txt": "/crypto-voting-dapp/static/js/3.6aef1cd2.chunk.js.LICENSE.txt",
@@ -51,7 +51,7 @@
   "entrypoints": [
     "static/js/runtime-main.874f22f5.js",
     "static/js/6.6d1c9d1e.chunk.js",
-    "static/css/main.242a3850.chunk.css",
-    "static/js/main.c6db7a7d.chunk.js"
+    "static/css/main.5ee095af.chunk.css",
+    "static/js/main.3cc4ba04.chunk.js"
   ]
 }
