@@ -95,6 +95,7 @@ const App = () => {
           text="Instructions"
           theme="primary"
           type="button"
+          size="large"
         />
       </div>
       <div className="list">
