@@ -59,6 +59,48 @@
   line-height: 50px;
 }
 
+.instructions-modal{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 35px;
+}
+
+.modal{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  /* font: 'open-sans'; */
+}
+
+.modal-header h4{
+  color: #2E7DAF;
+}
+
+.modal-canvas{
+  width: 500px;
+  background-color: white;
+  border-radius: 25px;
+  padding: 28px 32px 24px;
+}
+
+.modal-body ul{
+  margin:0;
+  padding:0;
+  color: #68738D;
+}
+
+.modal-body ol{
+  margin:0 0 10px 0;
+  padding:0;
+}
+
 
 .sc-kTvvXX {
   background-color: #202c37 !important;

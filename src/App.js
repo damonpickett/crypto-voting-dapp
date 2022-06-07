@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { ConnectButton, Modal } from "web3uikit";
+import { ConnectButton, Modal, Button } from "web3uikit";
 import logo from "./images/Moralis.png";
 import Coin from "./components/Coin";
+import InstructionModal from "./components/InstructionModal";
 import {abouts} from './about';
 import { useMoralisWeb3Api, useMoralis } from "react-moralis";
 
@@ -15,6 +16,7 @@ const App = () => {
   const {Moralis, isInitialized} = useMoralis();
   const [visible, setVisible] = useState(false);
   const [modalToken, setModalToken] = useState();
+  const [instructionModal, setInstructionModal] = useState(false);
 
   async function getRatio(tick, setPerc) {
 
@@ -83,6 +85,17 @@ const App = () => {
       </div>
       <div className="instructions">
         Where do you think these tokens are going? Up or Down?
+      </div>
+      <div className="instructions-modal">
+        <InstructionModal instructionModal={instructionModal} setInstructionModal={setInstructionModal}/>
+        <Button
+          onClick={() => {
+            setInstructionModal(true);
+          }}
+          text="Instructions"
+          theme="primary"
+          type="button"
+        />
       </div>
       <div className="list">
         <Coin 
